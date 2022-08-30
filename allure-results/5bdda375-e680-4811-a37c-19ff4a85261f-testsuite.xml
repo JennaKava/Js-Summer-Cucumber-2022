@@ -1,0 +1,127 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1661543352571' stop='1661543353918'>
+    <name>Login: Verify ligin gets error on empty login form</name>
+    <title>Login: Verify ligin gets error on empty login form</title>
+    <test-cases>
+        <test-case start='1661543352572' status='passed' stop='1661543352573'>
+            <name></name>
+            <title></title>
+            <labels>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-0'/>
+            </labels>
+            <parameters>
+                <parameter kind='argument' name='browser' value='chrome-104.0.5112.101'/>
+            </parameters>
+            <steps/>
+            <attachments/>
+        </test-case>
+        <test-case start='1661543352573' status='passed' stop='1661543353295'>
+            <name>Given I am on facebook landing page</name>
+            <title>Given I am on facebook landing page</title>
+            <labels>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-0'/>
+            </labels>
+            <parameters>
+                <parameter kind='argument' name='browser' value='chrome-104.0.5112.101'/>
+            </parameters>
+            <steps>
+                <step start='1661543352575' status='passed' stop='1661543353294'>
+                    <name>POST /session/:sessionId/url</name>
+                    <title>POST /session/:sessionId/url</title>
+                    <attachments>
+                        <attachment title='Request' source='b7115d02-6ef5-4ecc-871b-d39af99b0d52-attachment.json' type='application/json' size='40'/>
+                    </attachments>
+                    <steps/>
+                </step>
+            </steps>
+            <attachments/>
+        </test-case>
+        <test-case start='1661543353295' status='passed' stop='1661543353872'>
+            <name>When I click login button</name>
+            <title>When I click login button</title>
+            <labels>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-0'/>
+            </labels>
+            <parameters>
+                <parameter kind='argument' name='browser' value='chrome-104.0.5112.101'/>
+            </parameters>
+            <steps>
+                <step start='1661543353296' status='passed' stop='1661543353312'>
+                    <name>POST /session/:sessionId/element</name>
+                    <title>POST /session/:sessionId/element</title>
+                    <attachments>
+                        <attachment title='Request' source='c2c69cc2-fe87-47cc-bc26-70ea519492a4-attachment.json' type='application/json' size='46'/>
+                        <attachment title='Response' source='e1147af5-2bc5-4dc5-af73-fafaf936a672-attachment.json' type='application/json' size='83'/>
+                    </attachments>
+                    <steps/>
+                </step>
+                <step start='1661543353321' status='passed' stop='1661543353872'>
+                    <name>POST /session/:sessionId/element/0977b9b3-0b52-4a9c-89fb-a14964e1ad7f/click</name>
+                    <title>POST /session/:sessionId/element/0977b9b3-0b52-4a9c-89fb-a14964e1ad7f/click</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+            </steps>
+            <attachments/>
+        </test-case>
+        <test-case start='1661543353872' status='failed' stop='1661543353915'>
+            <name>When I verify error is displayed</name>
+            <title>When I verify error is displayed</title>
+            <labels>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-0'/>
+            </labels>
+            <parameters>
+                <parameter kind='argument' name='browser' value='chrome-104.0.5112.101'/>
+            </parameters>
+            <steps>
+                <step start='1661543353873' status='passed' stop='1661543353891'>
+                    <name>POST /session/:sessionId/element</name>
+                    <title>POST /session/:sessionId/element</title>
+                    <attachments>
+                        <attachment title='Request' source='88975e8c-d86b-4c04-a3b2-6d86aec0cd8d-attachment.json' type='application/json' size='91'/>
+                        <attachment title='Response' source='0ee91e9a-b7f5-48ce-93fe-b644d78e24ea-attachment.json' type='application/json' size='83'/>
+                    </attachments>
+                    <steps/>
+                </step>
+                <step start='1661543353895' status='passed' stop='1661543353910'>
+                    <name>POST /session/:sessionId/execute/sync</name>
+                    <title>POST /session/:sessionId/execute/sync</title>
+                    <attachments>
+                        <attachment title='Request' source='8b59249b-97f1-437a-8666-f82640eb3135-attachment.json' type='application/json' size='8337'/>
+                        <attachment title='Response' source='64299dfb-5c24-47b3-85cb-9d16f440c776-attachment.json' type='application/json' size='4'/>
+                    </attachments>
+                    <steps/>
+                </step>
+            </steps>
+            <attachments/>
+            <failure>
+                <message>AssertionError: Login error is NOT displayed: expected undefined to be true</message>
+                <stack-trace>AssertionError: Login error is NOT displayed: expected undefined to be true
+                    at World.&lt;anonymous> (/Users/honey/Documents/Development/git/Js-Summer-Cucumber-2022/step-definitions/Facebook/loginSD.js:37:88)
+                    at processTicksAndRejections (node:internal/process/task_queues:96:5)</stack-trace>
+            </failure>
+        </test-case>
+        <test-case start='1661543353915' status='passed' stop='1661543353916'>
+            <name></name>
+            <title></title>
+            <labels>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-0'/>
+            </labels>
+            <parameters>
+                <parameter kind='argument' name='browser' value='chrome-104.0.5112.101'/>
+            </parameters>
+            <steps/>
+            <attachments/>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>
