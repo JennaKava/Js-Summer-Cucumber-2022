@@ -34,5 +34,5 @@ When(/^I click login button$/, async function() {
 });
 
 Then(/^I verify error is displayed$/, async function() {
-    expect(await loginpage.isLoginErrDisplayed(), 'fcdsvdfv').to.be.true;
+    expect(await loginpage.isLoginErrDisplayed(), '').to.be.true;
 });
