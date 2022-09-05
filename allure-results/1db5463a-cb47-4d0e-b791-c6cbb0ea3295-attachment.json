@@ -1,0 +1,4 @@
+{
+  "using": "xpath",
+  "value": "//div[contains(text(),\"The email address or mobile number\")]"
+}
