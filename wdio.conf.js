@@ -21,7 +21,7 @@ exports.config = {
     // will be called from there.
     //
     specs: [
-        './features/Facebook/login.feature'
+        './features/**/*.feature'
     ],
     // Patterns to exclude.
     exclude: [
