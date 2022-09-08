@@ -1,5 +1,6 @@
 const { Given, Then, When } = require("@wdio/cucumber-framework");
 const { expect , assert } = require("chai");
+const moment = require("moment");
 const LandingPage = require("../../Pages/Darsky/LandingPage");
 const lPage = new LandingPage() 
 
@@ -40,4 +41,41 @@ When(/^I click search button$/, async function() {
 Then(/^I verify that temperature displayed is based on zipcode$/, async function() {
     const tempForEnteredLoc = await lPage.currentTempForThisArea()
     this.log(tempForEnteredLoc) 
+})
+
+Then(/^I Verify timeline has 12-data points with 2 hours gap from current hour$/, async function() {
+    const hoursArray = await lPage.timeLineHourArray()
+    const mockArray = []
+    let addedTime = 2
+    for (let index = 0; index < 12; index++) {
+        if (index == 0) {
+            mockArray.push('Now')
+        } else {
+            mockArray.push(moment().add(addedTime, 'hour').format('ha'))
+            addedTime = addedTime + 2
+        }    
+    }
+    expect(hoursArray, 'Arrays are not identical').to.eql(mockArray); 
+})
+
+When(/^I scroll to Today's timeline$/, async function() {
+    await browser.pause(3000)
+    await lPage.scrollTodayDetails()
+    
+})
+
+When(/^I click on plus btn$/, async function() {
+    await lPage.clickPlusButton()
+    await browser.pause(3000)
+})
+When(/^I verify minimal Temperature on and in Today's view is equal$/, async function() {
+    const minOnTemp = await lPage.getTodayOnMinTemp()
+    const minInTemp = await lPage.getTodayInMinTemp()
+    expect(minOnTemp, 'Temperatures are NOT the same').to.equal(minInTemp)
+})
+        
+Then(/^I verify maxTemp on and in Today's timeline is same$/, async function() {
+    const maxOnTemp = await lPage.getTodayOnMaxTemp()
+    const maxInTemp = await lPage.getTodayInMaxTemp()
+    expect(maxOnTemp, 'Temperatures are NOT the same').to.equal(maxInTemp)
 })

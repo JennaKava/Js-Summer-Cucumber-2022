@@ -33,6 +33,7 @@ class Commands {
 
     async getTextFromWebElement(locator) {
         const element = await this.findWebElement(locator);
+        console.log(element);
         return await element.getText();
     }
 
@@ -62,6 +63,12 @@ class Commands {
             }
         }
     }
+
+    async scrollToTheView (locator) {
+        const webElement = await $(locator);
+        await webElement.scrollIntoView();
+    }
+
     // /**
     //  * Generic function to find a webElement
     //  * Input: locator

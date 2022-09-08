@@ -8,6 +8,14 @@ class LandingPage {
     currentLocFieldLocator = '//div[@id="header"]//form[@id="searchForm"]//input[@type="text"]'
     searchButtonLocator = '//img[@alt="Search Button"]'//'a[class="searchButton"]'
     tempForZipCodeLocator = '//div[@id="title"]//span[@class="summary swap"]'
+    timeLineHrsLocator = '//div[@class="hours"]//span[contains(@class, "hour")]'
+    todayTempDetails = '//a[@data-day="7"]'
+    plusButtonLoc = '//div[@class="summary"]/ following::span[@class="toggle"][1]'
+    todayOnMinTemp = '//a[@data-day="0"]//span[@class="minTemp"]'
+    todayInMinTemp = '//a[@data-day="0"]/following::div[@class="dayDetails revealed"]//span[@class="highTemp swip"]//span[@class="temp"]'
+    todayOnMaxTemp = '//a[@data-day="0"]//span[@class="maxTemp"]'
+    todayInMaxTemp = '//a[@data-day="0"]/following::div[@class="dayDetails revealed"]//span[@class="lowTemp swap"]//span[@class="temp"]'
+    
 
     async getTempValue(locator) {
         return await this.commands.getNumberVlueFromString(locator)
@@ -34,7 +42,42 @@ class LandingPage {
         await element.waitForDisplayed({timeout: 4000, timeoutMsg: 'temp is NOT displayed with in 2-seconds'})
         return await this.commands.getTextFromWebElement(element)
     }
-        
+
+    async timeLineHourArray() {
+        const timeLineHours = await this.commands.findWebElements(this.timeLineHrsLocator)
+        const newArray = []
+        for (const timeLineHour of timeLineHours ){
+            const element = await timeLineHour.getText()
+            if (element != '') {
+                newArray.push(element)
+            }
+        }
+        return newArray
+    }
+    
+    async scrollTodayDetails() {
+        await this.commands.scrollToTheView(this.todayTempDetails)
+    }
+
+    async clickPlusButton() {
+        await this.commands.clickWebElement(this.plusButtonLoc)
+    }
+
+    async getTodayOnMinTemp() {
+        return await this.commands.getTextFromWebElement(this.todayOnMinTemp)
+    }
+    
+    async getTodayInMinTemp() {
+        return await this.commands.getTextFromWebElement(this.todayInMinTemp)
+    }
+
+    async getTodayOnMaxTemp() {
+        return await this.commands.getTextFromWebElement(this.todayOnMaxTemp)
+    }
+
+    async getTodayInMaxTemp() {
+        return await this.commands.getTextFromWebElement(this.todayInMaxTemp)
+    }
 }
 
 module.exports = LandingPage
