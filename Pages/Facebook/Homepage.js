@@ -1,13 +1,19 @@
-const Commands = require("../Commands");
+const Commands = require("../Commands")
 
 class Homepage {
-
-    commands = new Commands();
+    commands = new Commands()
     // Locators for web-elements on the Homepage (variables)
     loginEmailLocator = '#email';
     loginPwdLocator = '#pass';
     loginBtnLocator = '<button>';
     createNewAccountLocator = '=Create New Account';
+    instagramLinkLoc = '=Instagram'
+    portalLinkLoc = '=Portal'
+    oculusLinkLoc = '=Oculus'
+    fbPayLoc = '=Facebook Pay'
+    fbPayTitleLoc = 'Meta Pay'
+
+
 
 
 
@@ -38,6 +44,26 @@ class Homepage {
      */
     async clickLoginButton() {
         await this.commands.clickWebElement(this.loginBtnLocator);
+    }
+
+    async clickInstagramLink() {
+        await this.commands.clickWebElement(this.instagramLinkLoc)
+    }
+
+    async clickOculusLink() {
+        await this.commands.clickWebElement(this.oculusLinkLoc)
+    }
+
+    async clickFbLink() {
+        await this.commands.clickWebElement(this.fbPayLoc)
+    }
+
+    async clickPortalLink() {
+        await this.commands.clickWebElement(this.portalLinkLoc)
+    }
+
+    async closeAllButFbPayWndw() {
+        await this.commands.closeAllWindsExptThis(this.fbPayTitleLoc)
     }
 
     /**

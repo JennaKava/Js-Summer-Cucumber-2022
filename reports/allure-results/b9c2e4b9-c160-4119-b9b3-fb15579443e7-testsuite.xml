@@ -1,0 +1,58 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1663340139230' stop='1663340148481'>
+    <name>Windows</name>
+    <title>Windows</title>
+    <test-cases>
+        <test-case start='1663340139245' status='passed' stop='1663340148480'>
+            <name>Close all windows except Facebook Pay</name>
+            <title>Close all windows except Facebook Pay</title>
+            <labels>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-3'/>
+            </labels>
+            <parameters>
+                <parameter kind='argument' name='browser' value='chrome-105.0.5195.125'/>
+            </parameters>
+            <steps>
+                <step start='1663340139247' status='passed' stop='1663340141972'>
+                    <name>Given I am on facebook.com</name>
+                    <title>Given I am on facebook.com</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1663340141972' status='passed' stop='1663340144135'>
+                    <name>When I click on Instagram</name>
+                    <title>When I click on Instagram</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1663340144135' status='passed' stop='1663340144273'>
+                    <name>When I click on Portal</name>
+                    <title>When I click on Portal</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1663340144273' status='passed' stop='1663340144450'>
+                    <name>When I click on Oculus</name>
+                    <title>When I click on Oculus</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1663340144451' status='passed' stop='1663340144592'>
+                    <name>When I click on Facebook Pay</name>
+                    <title>When I click on Facebook Pay</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1663340144592' status='passed' stop='1663340148479'>
+                    <name>Then I close all pages except Facebook Pay page</name>
+                    <title>Then I close all pages except Facebook Pay page</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+            </steps>
+            <attachments/>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>

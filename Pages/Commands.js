@@ -25,7 +25,15 @@ class Commands {
         const element = await this.findWebElement(locator);
         await element.click();
     }
+    async mouseOver(locator) {
+        const element = await this.findWebElement(locator)
+        await element.moveTo()
+    }
 
+    async scrollElementIntoView(locator) {
+        const element = await $(locator);
+        await element.scrollIntoView();
+    }
     /**
      * Generic function to type a webElement
      * Input: locator, data
@@ -97,6 +105,37 @@ class Commands {
             if (date.localeCompare(dateToSelect) === 0) {
                 await dateElement.click();
                 break;
+            }
+        }
+    }
+
+    async getNumberofWindHadls() {
+        return await browser.getWindowHandles()
+    }
+
+    async getWindTitle() {
+        return await browser.getTitle();
+    }
+    //switch handle from current opend window, works for two open windows
+    async switchWindowHandle() {
+        const allHandles = await this.getNumberofWindHadls()
+        const windowHandle = await browser.getWindowHandle();   // h1
+
+        for (const handle of allHandles) {        // allHandles = [h1, h2]
+            if (handle != windowHandle) {
+                await browser.switchToWindow(handle);
+            }
+        }
+    }
+
+    async closeAllWindsExptThis (locator) {
+        const allHandles = await browser.getWindowHandles();
+
+        for (const handle of allHandles) {
+            await browser.switchToWindow(handle);
+            const pageTitle = await browser.getTitle();
+            if (!pageTitle.includes(locator)) {
+                await browser.closeWindow();
             }
         }
     }

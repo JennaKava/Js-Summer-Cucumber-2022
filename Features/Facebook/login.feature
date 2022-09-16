@@ -5,7 +5,7 @@ Feature: Login
     #    Then I verify login username field is enabled
     #    And I verify login password field is enabled
     #    And I verify login button field is enabled
-
+    @signup
      Scenario: Verify user get error for invalid credentials
          Given I am on facebook landing page
          When I enter "@#$%^^^" as username
