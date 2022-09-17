@@ -1,0 +1,196 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1663447731048' stop='1663447736554'>
+    <name>Windows: Verify Instagram launched in new window</name>
+    <title>Windows: Verify Instagram launched in new window</title>
+    <test-cases>
+        <test-case start='1663447731048' status='passed' stop='1663447731050'>
+            <name></name>
+            <title></title>
+            <labels>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-5'/>
+            </labels>
+            <parameters>
+                <parameter kind='argument' name='browser' value='chrome-105.0.5195.125'/>
+            </parameters>
+            <steps/>
+            <attachments/>
+        </test-case>
+        <test-case start='1663447731050' status='passed' stop='1663447733858'>
+            <name>Given I am on facebook.com</name>
+            <title>Given I am on facebook.com</title>
+            <labels>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-5'/>
+            </labels>
+            <parameters>
+                <parameter kind='argument' name='browser' value='chrome-105.0.5195.125'/>
+            </parameters>
+            <steps>
+                <step start='1663447731053' status='passed' stop='1663447731855'>
+                    <name>POST /session/:sessionId/url</name>
+                    <title>POST /session/:sessionId/url</title>
+                    <attachments>
+                        <attachment title='Request' source='a833311e-67d3-4376-a625-1a7c6da80bcd-attachment.json' type='application/json' size='40'/>
+                    </attachments>
+                    <steps/>
+                </step>
+            </steps>
+            <attachments/>
+        </test-case>
+        <test-case start='1663447733858' status='passed' stop='1663447736033'>
+            <name>When I click on Instagram</name>
+            <title>When I click on Instagram</title>
+            <labels>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-5'/>
+            </labels>
+            <parameters>
+                <parameter kind='argument' name='browser' value='chrome-105.0.5195.125'/>
+            </parameters>
+            <steps>
+                <step start='1663447733860' status='passed' stop='1663447733894'>
+                    <name>POST /session/:sessionId/element</name>
+                    <title>POST /session/:sessionId/element</title>
+                    <attachments>
+                        <attachment title='Request' source='8ce0a907-e40f-434b-a642-914419faf13e-attachment.json' type='application/json' size='50'/>
+                        <attachment title='Response' source='b0cd4f75-5ea1-40bb-ba21-3f5846fa0066-attachment.json' type='application/json' size='83'/>
+                    </attachments>
+                    <steps/>
+                </step>
+                <step start='1663447733901' status='passed' stop='1663447734033'>
+                    <name>POST /session/:sessionId/element/8e7a7198-9666-4fa9-9bc4-d7d2c66fbd60/click</name>
+                    <title>POST /session/:sessionId/element/8e7a7198-9666-4fa9-9bc4-d7d2c66fbd60/click</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+            </steps>
+            <attachments/>
+        </test-case>
+        <test-case start='1663447736033' status='passed' stop='1663447736040'>
+            <name>And I verify new window opened</name>
+            <title>And I verify new window opened</title>
+            <labels>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-5'/>
+            </labels>
+            <parameters>
+                <parameter kind='argument' name='browser' value='chrome-105.0.5195.125'/>
+            </parameters>
+            <steps>
+                <step start='1663447736034' status='passed' stop='1663447736039'>
+                    <name>GET /session/:sessionId/window/handles</name>
+                    <title>GET /session/:sessionId/window/handles</title>
+                    <attachments>
+                        <attachment title='Response' source='bcce3d83-9135-4827-bc0b-bcc8892e6ba2-attachment.json' type='application/json' size='96'/>
+                    </attachments>
+                    <steps/>
+                </step>
+            </steps>
+            <attachments/>
+        </test-case>
+        <test-case start='1663447736040' status='passed' stop='1663447736087'>
+            <name>When I verify I am on Facebook window</name>
+            <title>When I verify I am on Facebook window</title>
+            <labels>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-5'/>
+            </labels>
+            <parameters>
+                <parameter kind='argument' name='browser' value='chrome-105.0.5195.125'/>
+            </parameters>
+            <steps>
+                <step start='1663447736041' status='passed' stop='1663447736086'>
+                    <name>GET /session/:sessionId/title</name>
+                    <title>GET /session/:sessionId/title</title>
+                    <attachments>
+                        <attachment title='Response' source='94af56e5-26df-4a38-beb0-b4741a3765ea-attachment.json' type='application/json' size='30'/>
+                    </attachments>
+                    <steps/>
+                </step>
+            </steps>
+            <attachments/>
+        </test-case>
+        <test-case start='1663447736087' status='passed' stop='1663447736140'>
+            <name>And I switch from Facebook to a newly opened window</name>
+            <title>And I switch from Facebook to a newly opened window</title>
+            <labels>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-5'/>
+            </labels>
+            <parameters>
+                <parameter kind='argument' name='browser' value='chrome-105.0.5195.125'/>
+            </parameters>
+            <steps>
+                <step start='1663447736088' status='passed' stop='1663447736101'>
+                    <name>GET /session/:sessionId/window/handles</name>
+                    <title>GET /session/:sessionId/window/handles</title>
+                    <attachments>
+                        <attachment title='Response' source='be7008de-5f41-433f-a1dc-fa1d0baf2038-attachment.json' type='application/json' size='96'/>
+                    </attachments>
+                    <steps/>
+                </step>
+                <step start='1663447736101' status='passed' stop='1663447736110'>
+                    <name>GET /session/:sessionId/window</name>
+                    <title>GET /session/:sessionId/window</title>
+                    <attachments>
+                        <attachment title='Response' source='fe452678-7199-48a4-9d4c-50137ed72a8f-attachment.json' type='application/json' size='43'/>
+                    </attachments>
+                    <steps/>
+                </step>
+                <step start='1663447736111' status='passed' stop='1663447736138'>
+                    <name>POST /session/:sessionId/window</name>
+                    <title>POST /session/:sessionId/window</title>
+                    <attachments>
+                        <attachment title='Request' source='c1c4b3fb-cf13-44da-8ade-440c5536018a-attachment.json' type='application/json' size='59'/>
+                    </attachments>
+                    <steps/>
+                </step>
+            </steps>
+            <attachments/>
+        </test-case>
+        <test-case start='1663447736140' status='passed' stop='1663447736553'>
+            <name>Then Verify Instagram opened in Scenarioa new window</name>
+            <title>Then Verify Instagram opened in Scenarioa new window</title>
+            <labels>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-5'/>
+            </labels>
+            <parameters>
+                <parameter kind='argument' name='browser' value='chrome-105.0.5195.125'/>
+            </parameters>
+            <steps>
+                <step start='1663447736142' status='passed' stop='1663447736552'>
+                    <name>GET /session/:sessionId/title</name>
+                    <title>GET /session/:sessionId/title</title>
+                    <attachments>
+                        <attachment title='Response' source='fbc28d4c-d60a-4ba6-b279-09a0f1cc5408-attachment.json' type='application/json' size='11'/>
+                    </attachments>
+                    <steps/>
+                </step>
+            </steps>
+            <attachments/>
+        </test-case>
+        <test-case start='1663447736553' status='passed' stop='1663447736553'>
+            <name></name>
+            <title></title>
+            <labels>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-5'/>
+            </labels>
+            <parameters>
+                <parameter kind='argument' name='browser' value='chrome-105.0.5195.125'/>
+            </parameters>
+            <steps/>
+            <attachments/>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>

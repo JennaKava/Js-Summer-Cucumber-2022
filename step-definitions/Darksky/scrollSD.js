@@ -1,8 +1,8 @@
 const { Given, Then, When } = require("@wdio/cucumber-framework");
-const Landingpage = require("../../Pages/Darsky/Landingpage")
-const landPage = new Landingpage()
+const LandingPage = require("../../Pages/Darksky/LandingPage")
+const landPage = new LandingPage()
 
-Given(/^I am on darksky landing page$/, async function () {
+Given(/^I am on darksky website$/, async function () {
     await browser.url('https://darksky.net/')
     await browser.pause(2000)
 })
