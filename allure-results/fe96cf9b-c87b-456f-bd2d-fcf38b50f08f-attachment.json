@@ -1,0 +1,4 @@
+{
+  "using": "xpath",
+  "value": "//a[@href=\"/church-chairs/\"]/following-sibling::div//li//a"
+}

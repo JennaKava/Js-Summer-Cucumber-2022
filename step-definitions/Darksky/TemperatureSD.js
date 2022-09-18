@@ -1,7 +1,7 @@
 const { Given, Then, When } = require("@wdio/cucumber-framework");
 const { expect , assert } = require("chai");
 const moment = require("moment");
-const LandingPage = require("../../Pages/Darsky/LandingPage");
+const LandingPage = require("../../Pages/Darksky/LandingPage");
 const lPage = new LandingPage() 
 
 Given(/^I am on darksky landing page$/, async function() {

@@ -10,7 +10,7 @@ Feature: Temperature
     #     When I enter "97201" zipcode
     #     When I click search button
     #     Then I verify that temperature displayed is based on zipcode
-
+    @timeline
     Scenario: Verify temperatures displayed with 2 hour gap from current hour
         Given I am on darksky landing page
         Then I Verify timeline has 12-data points with 2 hours gap from current hour
