@@ -201,13 +201,13 @@ class Commands {
         }
     }
 
-    async closeAllWindsExptThis (locator) {
+    async closeAllWindsExptThis (pgTitle) {
         const allHandles = await browser.getWindowHandles();
 
         for (const handle of allHandles) {
             await browser.switchToWindow(handle);
             const pageTitle = await browser.getTitle();
-            if (!pageTitle.includes(locator)) {
+            if (!pageTitle.includes(pgTitle)) {
                 await browser.closeWindow();
             }
         }

@@ -18,6 +18,9 @@ class SignInPage {
     emailError = '//div[@id="signupFormEmailInput-error"]'
     frstNameError = '//div[@id="signupFormFirstNameInput-error"]'
     lastNameError = '//div[@id="signupFormLastNameInput-error"]'
+    termsConditionsLink = '//div[@class="uitk-layout-flex-item"]//a[contains(text(), "Terms and Conditions")]'
+    privacyStatementLink = '//div[@class="uitk-layout-flex-item"]//a[contains(text(), "Privacy Statement")]'
+
     
 
     async clickSignIn() {
@@ -111,6 +114,27 @@ class SignInPage {
     async clickInPswrdField() {
         await this.commands.clickWebElement(this.psswrdSignUp)
     }
+
+    async clickTermsCondLink() {
+        await this.commands.clickWebElement(this.termsConditionsLink)
+    }
+
+    async switchWindow() {
+        await this.commands.switchWindowHandle()
+    }
+
+    async getTermsPgTitle() {
+        return await this.commands.getWindwTitle()
+    }
+
+    async clickPrivacyLink() {
+        await this.commands.clickWebElement(this.privacyStatementLink)
+    }
+
+    async getPrivacyPgTitle() {
+        await this.commands.getWindwTitle()
+    }
+
 
 }
 module.exports = SignInPage

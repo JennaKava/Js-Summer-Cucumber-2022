@@ -96,3 +96,29 @@ When(/^I verify “Continue” button is displayed but NOT enabled$/, async func
     const contBttnDisabled = await signInPage.isContinueBttnEnabled()
     expect(contBttnDisabled, 'Continue button IS enabled').to.be.false
 })
+
+When(/^I click “Terms and Conditions” link$/, async function() {
+    await signInPage.clickTermsCondLink()
+})
+
+When(/^I verify “Terms and Conditions” page opens in new tab$/, async function() {
+    await signInPage.switchWindow()
+    const pageTitle = await signInPage.getTermsPgTitle()
+    const expectedTitle = 'Terms of Service'
+    expect(pageTitle, 'Terms and conditions page did NOT open').to.be.equal(expectedTitle) 
+    await signInPage.switchWindow()
+    await browser.pause(1000)
+    // await signInPage.closeAllPgEceptMain()
+})
+
+When(/^I click “Privacy Statement” link$/, async function() {
+    await signInPage.clickPrivacyLink()
+    await browser.pause(1000)
+})
+
+Then(/^I verify “Privacy Statement” page opens in new tab$/, async function() {
+    await signInPage.switchWindow()
+    const pageNewTitle = await signInPage.getTermsPgTitle()
+    const expectedNewTitle = 'Hotels.com - Deals & Discounts'
+    expect(pageNewTitle, 'Terms and conditions page did NOT open').to.include(expectedNewTitle)
+})
