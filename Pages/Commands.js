@@ -182,7 +182,7 @@ class Commands {
         return await browser.getWindowHandles()
     }
 
-    async getWindTitle() {
+    async getWindwTitle() {
         return await browser.getTitle();
     }
     //switch handle from current opend window, works for two open windows
