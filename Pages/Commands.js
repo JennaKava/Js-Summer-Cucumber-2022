@@ -42,8 +42,12 @@ class Commands {
    
     async getTextFromWebElement(locator) {
         const element = await this.findWebElement(locator);
-        console.log(element);
         return await element.getText();
+    }
+
+    async clearTextField(locator) {
+        const element = await this.findWebElement(locator)
+        return await element.clearValue()
     }
 
     async getNumberVlueFromString(locator) {
