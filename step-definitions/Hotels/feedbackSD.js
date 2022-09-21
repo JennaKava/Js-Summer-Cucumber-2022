@@ -19,6 +19,7 @@ When(/^I click “Feedback”$/, async function() {
     await signInPg.clickFeedbackLink()
     await browser.pause(2000)
     await signInPg.switchWindow()
+    await browser.pause(2000)
 })
 
 When(/^I click on Submit button$/, async function() {
@@ -39,3 +40,32 @@ When(/^I verify star boxes section is in a red dotted box$/, async function() {
     expect(starGroupElem,'').to.be.equal(expectedParentIdAttribute)
 })
 
+When(/^I select any star-rating$/, async function() {
+    await feedbackPg.selectFourStarRatng()
+})
+
+When(/^I enter any comments$/, async function() {
+    await feedbackPg.typeInCommentBox('Great booking experience.')
+    await browser.pause(2000) 
+})
+
+When(/^I select from dropdown How likely are you to return to Hotels$/, async function() {
+    await feedbackPg.slctLikelyFrmDropDwn()
+    console.log(`YI: \n\nkahcblawhd\n\n`);
+    await browser.pause(2000)
+})
+
+When(/^I select any answer for “Prior to this visit, have you ever booked on Hotels website”$/, async function() {
+    await feedbackPg.selctNoFrBookBfr()
+})
+
+When(/^I select either button for ”Did you accomplish what you wanted to do on this page”$/, async function() {
+    await feedbackPg.slctYesFrAccomplish()
+})
+
+Then(/^I verify “THANK YOU FOR YOUR FEEDBACK.“ is displayed$/, async function() {
+    await browser.pause(2000)
+    const thankYouMsg = await feedbackPg.getThankYouMsgText()
+    const expectedMsg = 'THANK YOU FOR YOUR FEEDBACK.'
+    expect(thankYouMsg, 'Message is NOT asexpected').to.be.equal(expectedMsg)
+})
