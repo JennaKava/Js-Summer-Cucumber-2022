@@ -217,5 +217,11 @@ class Commands {
         const element = await this.findWebElement(locator);
         return await element.isDisplayed();
     }
+
+    async findParentElement(locator, value) {
+        const elem = await this.findWebElement(locator)
+        const parent = await elem.parentElement()
+        return await parent.getAttribute(value)
+    }
 }
 module.exports = Commands;

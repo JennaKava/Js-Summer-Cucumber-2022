@@ -1,6 +1,6 @@
 Feature: Sign in
 
-    @signinerror
+    @sprint1 @signin @TC-21
     Scenario: Verify Verification message for invalid sign in credentials
         Given I am on hotels website
         When I click on “Sign in” link
@@ -9,7 +9,7 @@ Feature: Sign in
         And I click on Sign in button
         Then I verify Verification message is displayed
 
-    @signinerror
+    @sprint1 @signin @TC-22
     Scenario: Verify error message for invalid data in SignUp form
         Given I am on hotels website
         When I click on SignIn link
@@ -24,7 +24,7 @@ Feature: Sign in
         Then I verify “Keep me signed in” checkbox is displayed and enabled
         And I verify “Continue” button is displayed but NOT enabled
 
-    @signin
+    @sprint1 @signin @TC-20
     Scenario: Verify TermsAndConditions link and PrivacyStatements link open correct page on new tab
         Given I am on hotels website
         When I click on SignIn link

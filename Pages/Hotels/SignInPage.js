@@ -20,6 +20,7 @@ class SignInPage {
     lastNameError = '//div[@id="signupFormLastNameInput-error"]'
     termsConditionsLink = '//div[@class="uitk-layout-flex-item"]//a[contains(text(), "Terms and Conditions")]'
     privacyStatementLink = '//div[@class="uitk-layout-flex-item"]//a[contains(text(), "Privacy Statement")]'
+    feedBackLink = '//div[@class="header-guest-heading"]/following::a[text()= "Feedback"]'
 
     
 
@@ -133,6 +134,10 @@ class SignInPage {
 
     async getPrivacyPgTitle() {
         await this.commands.getWindwTitle()
+    }
+
+    async clickFeedbackLink() {
+        await this.commands.clickWebElement(this.feedBackLink)
     }
 
 

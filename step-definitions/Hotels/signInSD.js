@@ -1,4 +1,3 @@
-const { default: BrowserstackService } = require("@wdio/browserstack-service");
 const { Given, Then, When } = require("@wdio/cucumber-framework");
 const { expect, assert } = require("chai");
 const SignInPage = require("../../Pages/Hotels/SignInPage")
@@ -108,7 +107,6 @@ When(/^I verify “Terms and Conditions” page opens in new tab$/, async functi
     expect(pageTitle, 'Terms and conditions page did NOT open').to.be.equal(expectedTitle) 
     await signInPage.switchWindow()
     await browser.pause(1000)
-    // await signInPage.closeAllPgEceptMain()
 })
 
 When(/^I click “Privacy Statement” link$/, async function() {
