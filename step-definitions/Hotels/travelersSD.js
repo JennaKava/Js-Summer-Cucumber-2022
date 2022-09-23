@@ -3,7 +3,7 @@ const { expect, assert } = require("chai");
 const TravelersPg =require("../../Pages/Hotels/TravelersPg")
 const travelPg = new TravelersPg()
 
-Given(/^Launch Hotels main page$/, async function() {
+Given(/^I launch Hotels.com main page$/, async function() {
     await browser.url('https://www.hotels.com/')
     await browser.pause(2000)
 })
@@ -73,3 +73,37 @@ Then(/^I verify minus-button is disabled$/, async function() {
     const minusBttnDisabled = await travelPg.isMinusBttnDisabled()
     expect(minusBttnDisabled, 'Plus button IS enabled').to.be.false
 })
+
+When(/^I select "Adults" as 6$/, async function() {
+    await travelPg.addAdultsRoomOne(4)
+    await browser.pause(1000)
+})
+
+When(/^I select "Children" as 3$/, async function() {
+    await travelPg.addKidsRoomOne(3)
+    await browser.pause(1000)
+})
+
+When(/^I select first child age: "(.+)"$/, async function(selectThis) {
+    await travelPg.frstKidsDropdowSelect(selectThis)
+})
+
+When(/^I select second child age: "(.+)"$/, async function(selectThis) {
+    await travelPg.sndKidsDropdowSelect(selectThis)
+})
+
+When(/^I select third child age: "(.+)"$/, async function(selectThis) {
+    await travelPg.thrdKidsDropdowSelect(selectThis)
+    await browser.pause(2000)
+})
+
+When(/^I click Done button$/, async function() {
+    await travelPg.clickDoneBttn()
+    await browser.pause(2000)
+})
+
+When(/^I verify total number of guests is 9$/, async function() {
+    const totalTravelers = await travelPg.getTotalTravelers()
+    expect(totalTravelers, 'Total numberof travelers is NOT as expected').to.equal(9)
+})
+

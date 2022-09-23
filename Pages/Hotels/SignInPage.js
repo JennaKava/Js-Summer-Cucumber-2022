@@ -3,7 +3,7 @@ const Commands = require("../Commands")
 class SignInPage {
     commands = new Commands()
     signInButtonHpg = '//button[text()="Sign in"]'
-    signUpBttn = '//a[contains(text(), "Sign up, it’s free")]'
+    signUpBttn = '//a[contains(text(), "Sign up, it")]'
     signInBtnPopUpMen = '//a[contains(@data-stid, "account-signin")]'
     emailInptField = '//input[@name="email"]'
     emailSignnUpField = '//input[@name="email"]'

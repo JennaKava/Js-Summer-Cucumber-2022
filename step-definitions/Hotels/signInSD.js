@@ -8,6 +8,11 @@ Given(/^I am on hotels website$/, async function() {
     await browser.pause(2000)
 })
 
+When(/^I click on Sign in link from homepage$/, async function() {
+    await signInPage.clickSignIn()
+    await browser.pause(2000)
+})
+
 When(/^I click on “Sign in” link$/, async function() {
     await signInPage.clickSignIn()
     await browser.pause(2000)
@@ -32,12 +37,7 @@ Then(/^I verify Verification message is displayed$/, async function() {
     expect(errorMsg, 'Messege displayed is NOT as expected').to.be.equal(expectedMsg)
 })
 
-When(/^I click on SignIn link$/, async function() {
-    await signInPage.clickSignIn()
-    await browser.pause(2000)
-})
-
-When(/^I click on SignUp link$/, async function() {
+When(/^I click on I click on Sign up page$/, async function() {
     await signInPage.clickSignUp()
     await browser.pause(1000)
 })
@@ -47,7 +47,7 @@ When(/^I enter invalid email address with at least '@' symbol "(.*)"$/, async fu
     await signInPage.clickInFrstNameField()
 })
 
-When(/^I verify error message is displayed$/, async function() {
+When(/^I verify error message is showing$/, async function() {
     const emailErrorMsg = await signInPage.emailErrMsgText()
     const expectedErrorMsg = 'Enter a valid email address'
     expect(emailErrorMsg, 'Error message is NOT as expected').to.be.equal(expectedErrorMsg)

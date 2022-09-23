@@ -11,7 +11,9 @@ class TravelersPg {
     disMinusChildBttn = '//input[contains(@id, "children_step_input")]/preceding-sibling::button[@class="uitk-layout-flex-item uitk-step-input-touch-target"]'
     childAgeOneDD = '#age-traveler_selector_children_age_selector-0-0'
     childAgeTwoDD = '#age-traveler_selector_children_age_selector-0-1'
+    childAgeThreeDD = '#age-traveler_selector_children_age_selector-0-2'
     ChildAgeDD = '//select[contains(@id, "children_age_selector")]'
+    doneButton = '//button[@id="traveler_selector_done_button"]'
 
     async clickOnTravelersMenu() {
         await this.commands.clickWebElement(this.travelersField)
@@ -48,6 +50,32 @@ class TravelersPg {
 
     async isKidsDropdowDisplayed() {
         return await this.commands.isWebElementDisplayed(this.childAgeOneDD)
+    }
+
+    async addAdultsRoomOne(numberOfClicks) {
+        await this.commands.multiClickWebEl(this.plusAdultsBttn, numberOfClicks)
+    }
+
+    async frstKidsDropdowSelect(selectThis) {
+        await this.commands.selectFromDropdown(this.childAgeOneDD, selectThis)
+    }
+
+    async sndKidsDropdowSelect(selectThis) {
+        await this.commands.selectFromDropdown(this.childAgeTwoDD, selectThis)
+    }
+
+    async thrdKidsDropdowSelect(selectThis) {
+        await this.commands.selectFromDropdown(this.childAgeThreeDD, selectThis)
+    }
+
+    async clickDoneBttn() {
+        await this.commands.clickWebElement(this.doneButton)
+    }
+
+    async getTotalTravelers() {
+        const totalTeavelers = await this.commands.getTextFromWebElement(this.travelersField)
+        const total = await totalTeavelers.split('\n')
+        return parseInt(total[1].substring(0, 1))
     }
 
 }

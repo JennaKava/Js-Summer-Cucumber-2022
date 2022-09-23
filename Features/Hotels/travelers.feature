@@ -2,7 +2,7 @@ Feature: Travelers count
 
     @sprint1 @travelers @TC-28
     Scenario: Verify Child-age dropdowns are same as number of Children selected
-        Given Launch Hotels main page
+        Given I launch Hotels.com main page
         When I click on Travelers
         And I select “Children” as 2
         And I verify children-age dropdown are 2
@@ -20,3 +20,15 @@ Feature: Travelers count
         And I verify Children-age dropdown is NOT displayed
         And I verify Plus button is enabled
         Then I verify minus-button is disabled
+
+    @sprint1 @travelers @TC-18
+    Scenario: Verify user can update number of guests on Home page
+        Given I launch Hotels.com main page
+        When I click on Travelers
+        And I select "Adults" as 6
+        And I select "Children" as 3
+        And I select first child age: "4"
+        And I select second child age: "Under 1"
+        And I select third child age: "7"
+        And I click Done button
+        Then I verify total number of guests is 9
