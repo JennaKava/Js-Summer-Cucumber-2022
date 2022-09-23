@@ -223,5 +223,13 @@ class Commands {
         const parent = await elem.parentElement()
         return await parent.getAttribute(value)
     }
+
+    async multiClickWebEl(locator, numberOfClicks) {
+        const element = await this.findWebElement(locator)
+        for (let counter = 1; counter <= numberOfClicks; counter++) {
+            await element.click()  
+            console.log(`\n\nEK->${counter} numberOfClicks: ${numberOfClicks}\n\n`);
+        }
+    }
 }
 module.exports = Commands;
