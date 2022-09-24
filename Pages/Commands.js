@@ -42,8 +42,12 @@ class Commands {
    
     async getTextFromWebElement(locator) {
         const element = await this.findWebElement(locator);
-        console.log(element);
         return await element.getText();
+    }
+
+    async clearTextField(locator) {
+        const element = await this.findWebElement(locator)
+        return await element.clearValue()
     }
 
     async getNumberVlueFromString(locator) {
@@ -182,7 +186,7 @@ class Commands {
         return await browser.getWindowHandles()
     }
 
-    async getWindTitle() {
+    async getWindwTitle() {
         return await browser.getTitle();
     }
     //switch handle from current opend window, works for two open windows
@@ -197,13 +201,13 @@ class Commands {
         }
     }
 
-    async closeAllWindsExptThis (locator) {
+    async closeAllWindsExptThis (pgTitle) {
         const allHandles = await browser.getWindowHandles();
 
         for (const handle of allHandles) {
             await browser.switchToWindow(handle);
             const pageTitle = await browser.getTitle();
-            if (!pageTitle.includes(locator)) {
+            if (!pageTitle.includes(pgTitle)) {
                 await browser.closeWindow();
             }
         }
@@ -212,6 +216,20 @@ class Commands {
     async isWebElementDisplayed(locator) {
         const element = await this.findWebElement(locator);
         return await element.isDisplayed();
+    }
+
+    async findParentElement(locator, value) {
+        const elem = await this.findWebElement(locator)
+        const parent = await elem.parentElement()
+        return await parent.getAttribute(value)
+    }
+
+    async multiClickWebEl(locator, numberOfClicks) {
+        const element = await this.findWebElement(locator)
+        for (let counter = 1; counter <= numberOfClicks; counter++) {
+            await element.click()  
+            console.log(`\n\nEK->${counter} numberOfClicks: ${numberOfClicks}\n\n`);
+        }
     }
 }
 module.exports = Commands;
