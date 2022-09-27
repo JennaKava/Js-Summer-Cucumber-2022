@@ -1,12 +1,18 @@
+const moment = require("moment")
 const Commands = require("../Commands")
-class DestinationSearch {
+class Dates {
     commands = new Commands()
     goingToFieldLocator = '//button[contains(@data-stid, "destination_form_field")]'
     typeInDestinationLocator = '//*[@id="destination_form_field"]'
     destAutoSugestions = '//div[@class="truncate"]//strong'
     datePickerElement = '//button[@data-stid="open-date-picker"]'
+    goToPreviousMonthLocator = '//button[@data-stid="date-picker-paging"][1]'
+    // '//button[@data-stid="date-picker-paging"]//*[@aria-label="Previous month"]'
+    monthLocator = '//div[@data-stid="date-picker-month"]//h2'
     sepDateLocator = '//h2[text()="September 2022"]/following-sibling::table//button[not(@disabled)]'
     octDateLocator = '//h2[text()="October 2022"]/following-sibling::table//button[not(@disabled)]'
+    sepDisabledDates = '//h2[text()="September 2022"]/following-sibling::table//button[contains(@aria-label, "disabled")]'
+    octDisabledDates = '//h2[text()="October 2022"]/following-sibling::table//button[contains(@aria-label, "disabled")]'
     calendarDoneBttn = '//button[@data-stid="apply-date-picker"]'
     searchSubmitBttn = '//button[@id="submit_button"]'
     locationDisplayedLoc = '//button[@class="uitk-fake-input uitk-form-field-trigger"]'
@@ -62,5 +68,32 @@ class DestinationSearch {
     async checkOutDate() {
         return await this.commands.getTextFromWebElement(this.checkOutDateLoc)
     }
+
+    async goToPreviousMonth(monthName) {
+        await this.commands.selectPreviousMonthFromCalander(this.monthLocator, this.goToPreviousMonthLocator, monthName)
+    }
+    
+
+    async previousDates() {
+        const datesArray = await this.commands.findWebElements(this.sepDisabledDates)
+        const currentDate = moment().format('D')
+        let allDates = []
+        for (let i = 0; i < datesArray.length; i++) {
+            let date = await datesArray[i].getAttribute('data-day')
+            if (date < currentDate) {
+                allDates.push(datesArray[i])
+            } 
+        }
+        return allDates
+    }
+
+    async arePrevousDatesEnabbled(allDates) {
+        return await this.commands.isAnyElemInArrayEnabled(allDates)
+    }
+
+    async isPreviousMonthBttnEnabled() {
+        return await this.commands.isWebElementEnabled(this.goToPreviousMonthLocator)
+    }
+    
 }
-module.exports = DestinationSearch
+module.exports = Dates

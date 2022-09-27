@@ -231,5 +231,28 @@ class Commands {
             console.log(`\n\nEK->${counter} numberOfClicks: ${numberOfClicks}\n\n`);
         }
     }
+
+    async selectPreviousMonthFromCalander(monthLocator, goToPreviousMonthLocator, monthName) {
+        const monthSeen = await this.getTextFromWebElement(monthLocator)
+        if (await monthSeen.includes(monthName) === false) {
+            await this.clickWebElement(goToPreviousMonthLocator);
+        }
+    }
+    
+    async isAnyElemInArrayEnabled(allDates){
+        if(allDates.length === 0) {
+            return false
+        }
+
+        for(let i=0; i === allDates.length; i++){
+            if(await allDates[i].isEnabled() !== false) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+
 }
 module.exports = Commands;
