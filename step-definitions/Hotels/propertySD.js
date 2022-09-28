@@ -12,10 +12,10 @@ Given(/^I go to hotels home page site$/, async function() {
 When(/^I click on “List your property”$/, async function() {
     await property.clickListProperty()
     await browser.pause(2000)
+    await property.switchToNewWindow()
 })
 
 When(/^I verify What would you like to list is displayed$/, async function() {
-    await property.switchToNewWindow()
     const listMsg = await property.getWhatToListIsText()
     const expectedMsg = 'What would you like to list?'
     expect(listMsg, 'Message What would you like to list is NOT displayed').to.equal(expectedMsg)
