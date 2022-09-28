@@ -1,4 +1,4 @@
-const moment = require("moment")
+const { currentDay } = require("../../Utils/MyMomentFunctions")
 const Commands = require("../Commands")
 class Dates {
     commands = new Commands()
@@ -76,7 +76,7 @@ class Dates {
 
     async previousDates() {
         const datesArray = await this.commands.findWebElements(this.sepDisabledDates)
-        const currentDate = moment().format('D')
+        const currentDate = currentDay()
         let allDates = []
         for (let i = 0; i < datesArray.length; i++) {
             let date = await datesArray[i].getAttribute('data-day')

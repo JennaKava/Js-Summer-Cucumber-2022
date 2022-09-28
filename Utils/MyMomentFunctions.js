@@ -11,5 +11,9 @@ class MyMomentFunctions {
         
     }
 
+    static currentDay() {
+        return moment().format('D')
+    }
+
 }
 module.exports = MyMomentFunctions;

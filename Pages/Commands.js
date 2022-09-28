@@ -55,7 +55,7 @@ class Commands {
         return parseFloat(await element.getText())
     }
 
-    async getAutoSugText(locator, userInput) {
+    async chooseFromAutoSuggestion(locator, userInput) {
         const autoSuggestions = await $$(locator)
         for(const selectedText of autoSuggestions) {
             const autoSuggestText = await selectedText.getText()
@@ -227,8 +227,7 @@ class Commands {
     async multiClickWebEl(locator, numberOfClicks) {
         const element = await this.findWebElement(locator)
         for (let counter = 1; counter <= numberOfClicks; counter++) {
-            await element.click()  
-            console.log(`\n\nEK->${counter} numberOfClicks: ${numberOfClicks}\n\n`);
+            await element.click();
         }
     }
 
@@ -250,6 +249,11 @@ class Commands {
             }
         }
         return false;
+    }
+
+    async getNextSiblingElemInDOM(locator) {
+        const element = await this.findWebElement(locator)
+        return await element.nextElement()
     }
 
 
