@@ -138,10 +138,10 @@ class Commands {
     //  * Generic function to select value form Dropdown (with select-tag)
     //  * Input: locator, selectThis
     //  */
-    // async selectFromDropdown(locator, selectThis) {
-    //     const dropdownElement = await this.findWebElement(locator);
-    //     await dropdownElement.selectByVisibleText(selectThis);
-    // }
+    async selectFromDropdown(locator, selectThis) {
+        const dropdownElement = await this.findWebElement(locator);
+        await dropdownElement.selectByVisibleText(selectThis);
+    }
 
     // async getTextFromWebElement(locator) {
     //     const element = this.findWebElement(locator);

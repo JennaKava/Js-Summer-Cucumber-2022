@@ -28,3 +28,40 @@ Then(/^I verify “Please enter a valid phone number.“ error is displayed$/, a
     expect(phoneErrMsg, 'Error message is NOT displayed').to.equal(expectedMsg)
     await browser.pause(1000)
 })
+
+When(/^I click on “English“ language$/, async function() {
+    await hPage.clickLanguageBttn()
+    await browser.pause(1000)
+})
+
+When(/^I select (.+) in Language dropdown$/, async function(selectThis) {
+    await hPage.selectLanguage(selectThis)
+})
+
+When(/^I click on “Save“ button$/, async function() {
+    await hPage.clickSaveBttn()
+})
+
+When(/^I verify “Español” is displayed$/, async function() {
+    const languageBttnText = await hPage.getTextFromLanguageBttn()
+    expect(languageBttnText, 'Español button is NOT displayed').to.equal('Español')
+})
+
+When(/^I click on “Español“ language$/, async function() {
+    await hPage.clickLanguageBttn()
+    await browser.pause(1000)
+})
+
+When(/^I pick (.+) Language in dropdown menu$/, async function(selectThis) {
+    await hPage.selectLanguage(selectThis)
+})
+
+When(/^I click on “Guardar“ button$/, async function() {
+    await hPage.clickGuargarBttn()
+    await browser.pause(1000)
+})
+
+Then(/^I verify “English” is displayed$/, async function() {
+    const languageBttnText = await hPage.getTextFromLanguageBttn()
+    expect(languageBttnText, 'English button is NOT displayed').to.equal('English')
+})
