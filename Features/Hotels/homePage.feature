@@ -15,6 +15,6 @@ Feature: Home page features
         And I click on “Save“ button
         And I verify “Español” is displayed
         And I click on “Español“ language
-        And I pick English (United States) Language in dropdown menu
+        And I select English (United States) in Language dropdown
         And I click on “Guardar“ button
         Then I verify “English” is displayed

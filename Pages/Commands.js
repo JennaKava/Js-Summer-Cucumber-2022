@@ -164,17 +164,17 @@ class Commands {
         }
     }
 
-    async selectDateFromCalendar(monthHeadingLocator, goToNextMonthLocator, allDatesLocator, dateToSelect) {
+    async selectDateFromCalendar(monthLocator, goToNextMonthLocator, allDatesLocator, dateToSelect) {
         for (let i=1 ; i <= 12 ; i++) {
-            const monthSeen = await this.isWebElementDisplayed(monthHeadingLocator);
-            if (monthSeen) {
+            const monthSeen = await this.getTextFromWebElement(monthLocator)
+            if (await monthSeen.includes(dateToSelect.substring(0, 2)) === true){
                 break;
             }
             await this.clickWebElement(goToNextMonthLocator);
         }
         const allDateElements = await this.findWebElements(allDatesLocator);
         for (const dateElement of allDateElements) {
-            const date = await dateElement.getAttribute('data-day');
+            const date = await dateElement.getAttribute('aria-label');
             if (date.localeCompare(dateToSelect) === 0) {
                 await dateElement.click();
                 break;

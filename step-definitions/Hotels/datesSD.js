@@ -11,11 +11,11 @@ Given(/^I am on hotels landing page$/, async function() {
 
 When(/^I click in destination field and type (.*)$/, async function (destination) {
     await dPage.clickInDestField()
-    await browser.pause(2000)
+    await browser.pause(1000)
     await dPage.clickDestinationFieldPopUp()
-    await browser.pause(2000)
+    await browser.pause(1000)
     await dPage.typeInDestField(destination)
-    await browser.pause(2000)
+    await browser.pause(1000)
 })
 
 When(/^I select (.*) from autosuggestions list$/, async function(destination) {
@@ -38,14 +38,14 @@ When(/^I select check out October (.*) date$/, async function(date) {
     await browser.pause(2000)
 })
 
-When(/^I click button done$/, async function() {
+When(/^I click done button$/, async function() {
     await dPage.clickCalendarDone()
-    await browser.pause(2000)
+    await browser.pause(1000)
 })
 
-When(/^I click button search$/, async function() {
-    await dPage.clickSearcDestBttn()
-    await browser.pause(3000)
+When(/^I click Search button$/, async function() {
+    await dPage.clickSearcBttn()
+    await browser.pause(2000)
 })
 
 Then(/^I verify page displayes correct destination and dates$/, async function() {
@@ -77,5 +77,35 @@ When(/^I verify back button on present month is disabled$/, async function() {
     await browser.pause(1000)
     expect(leftArrowBttn, 'The previous month arrow button IS enabled').to.be.false
 })
+
+When(/^I select (.+) as Check-in$/, async function(dateToSelect) {
+    await dPage.clikDatePicker()
+    await dPage.selecDates(dateToSelect)
+    await browser.pause(1000)
+
+})
+
+When(/^I select (.+) as Check-out$/, async function(dateToSelect) {
+    await dPage.selecDates(dateToSelect)
+    await browser.pause(1000)
+
+})
+
+Then(/^I verify Tell us how we can improve our site is displayed$/, async function() {
+    await dPage.scrollToButtom()
+    await browser.pause(1000)
+    const improveMsg = await dPage.getTextHowCanWeImprove()
+    const expectedMsg = 'Tell us how we can improve our site'
+    expect(improveMsg, 'Message is NOT displayed').to.equal(expectedMsg)
+})
+
+When(/^I verify button Share feedback is displayed and enabled$/, async function() {
+    const shareBttnDisp = await dPage.isShareFeedbackDisplayed()
+    expect(shareBttnDisp, 'Share feedback is NOT displayed').to.be.true
+    const shareBttnEnabl = await dPage.isShareFeedbackEnabled()
+    expect(shareBttnEnabl,'Share feedback is NOT').to.be.true
+})
+
+
 
     

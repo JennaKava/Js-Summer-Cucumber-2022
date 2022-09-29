@@ -52,10 +52,6 @@ When(/^I click on “Español“ language$/, async function() {
     await browser.pause(1000)
 })
 
-When(/^I pick (.+) Language in dropdown menu$/, async function(selectThis) {
-    await hPage.selectLanguage(selectThis)
-})
-
 When(/^I click on “Guardar“ button$/, async function() {
     await hPage.clickGuargarBttn()
     await browser.pause(1000)

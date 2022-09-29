@@ -7,17 +7,23 @@ class Dates {
     destAutoSugestions = '//div[@class="truncate"]//strong'
     datePickerElement = '//button[@data-stid="open-date-picker"]'
     goToPreviousMonthLocator = '//button[@data-stid="date-picker-paging"][1]'
+    goToNextMonthBttn = '//button[@data-stid="date-picker-paging"][2]'
     // '//button[@data-stid="date-picker-paging"]//*[@aria-label="Previous month"]'
     monthLocator = '//div[@data-stid="date-picker-month"]//h2'
+    allDatesLocator = '//button[@class="uitk-date-picker-day"]'
     sepDateLocator = '//h2[text()="September 2022"]/following-sibling::table//button[not(@disabled)]'
     octDateLocator = '//h2[text()="October 2022"]/following-sibling::table//button[not(@disabled)]'
     sepDisabledDates = '//h2[text()="September 2022"]/following-sibling::table//button[contains(@aria-label, "disabled")]'
     octDisabledDates = '//h2[text()="October 2022"]/following-sibling::table//button[contains(@aria-label, "disabled")]'
     calendarDoneBttn = '//button[@data-stid="apply-date-picker"]'
-    searchSubmitBttn = '//button[@id="submit_button"]'
+    searchSubmitBttn = '//button[@aria-label="Search"]'
+    // '//button[@id="submit_button"]'
     locationDisplayedLoc = '//button[@class="uitk-fake-input uitk-form-field-trigger"]'
     checkInDateLoc = '//button[@id="hotels-check-in-btn"]'
     checkOutDateLoc = '//button[@id="hotels-check-out-btn"]'
+    howCanWeImproveMsg = '//div[@data-stid="shared-ui-voice-of-the-customer"]//span'
+    // '//span[contains(text(), "Tell us how we can improve")]'
+    shareFeedbackBttn = '//a[contains(@aria-label, "Share feedback")]'
 
 
 
@@ -53,7 +59,7 @@ class Dates {
         await this.commands.clickWebElement(this.calendarDoneBttn)
     }
 
-    async clickSearcDestBttn() {
+    async clickSearcBttn() {
         await this.commands.clickWebElement(this.searchSubmitBttn)
     }
 
@@ -94,6 +100,26 @@ class Dates {
     async isPreviousMonthBttnEnabled() {
         return await this.commands.isWebElementEnabled(this.goToPreviousMonthLocator)
     }
+
+    async selecDates(dateToSelect) {
+        await this.commands.selectDateFromCalendar(this.monthLocator, this.goToNextMonthBttn, this.allDatesLocator, dateToSelect)
+    }
+
+    async scrollToButtom() {
+        await this.commands.scrollElementIntoView(this.howCanWeImproveMsg)
+    }
+
+    async getTextHowCanWeImprove() {
+        return await this.commands.getTextFromWebElement(this.howCanWeImproveMsg)
+    }
+    async isShareFeedbackDisplayed() {
+        return await this.commands.isWebElementDisplayed(this.shareFeedbackBttn)
+    }
+
+    async isShareFeedbackEnabled() {
+        return await this.commands.isWebElementEnabled(this.shareFeedbackBttn)
+    }
+
     
 }
 module.exports = Dates
