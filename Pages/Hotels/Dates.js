@@ -4,11 +4,11 @@ class Dates {
     commands = new Commands()
     goingToFieldLocator = '//button[contains(@data-stid, "destination_form_field")]'
     typeInDestinationLocator = '//*[@id="destination_form_field"]'
-    destAutoSugestions = '//div[@class="truncate"]//strong'
+    destinationsAutoSugestions = '//div[@class="truncate"]//strong'
+    distinationsSubtextLoc = '//div[@class="uitk-typeahead-button-label truncate"]'
     datePickerElement = '//button[@data-stid="open-date-picker"]'
     goToPreviousMonthLocator = '//button[@data-stid="date-picker-paging"][1]'
     goToNextMonthBttn = '//button[@data-stid="date-picker-paging"][2]'
-    // '//button[@data-stid="date-picker-paging"]//*[@aria-label="Previous month"]'
     monthLocator = '//div[@data-stid="date-picker-month"]//h2'
     allDatesLocator = '//button[@class="uitk-date-picker-day"]'
     sepDateLocator = '//h2[text()="September 2022"]/following-sibling::table//button[not(@disabled)]'
@@ -17,13 +17,16 @@ class Dates {
     octDisabledDates = '//h2[text()="October 2022"]/following-sibling::table//button[contains(@aria-label, "disabled")]'
     calendarDoneBttn = '//button[@data-stid="apply-date-picker"]'
     searchSubmitBttn = '//button[@aria-label="Search"]'
-    // '//button[@id="submit_button"]'
     locationDisplayedLoc = '//button[@class="uitk-fake-input uitk-form-field-trigger"]'
     checkInDateLoc = '//button[@id="hotels-check-in-btn"]'
     checkOutDateLoc = '//button[@id="hotels-check-out-btn"]'
     howCanWeImproveMsg = '//div[@data-stid="shared-ui-voice-of-the-customer"]//span'
-    // '//span[contains(text(), "Tell us how we can improve")]'
     shareFeedbackBttn = '//a[contains(@aria-label, "Share feedback")]'
+    starRatingLoc = '//span[@class="uitk-type-300"]'
+    sortByMenuLoc = '//select[@id="sort"]'
+    fiveStarRatingLoc = '//span[text()="5.0 out of 5"]'
+    hotelPriceLoc = '//div[contains(text(), "The price is")]'
+
 
 
 
@@ -40,7 +43,7 @@ class Dates {
     }
 
     async selectDestination(userInput) {
-        await this.commands.selectFromAutoSuggestions(this.destAutoSugestions, userInput)
+        await this.commands.selectFromAutoSuggestions(this.destinationsAutoSugestions, userInput)
     }
 
     async clikDatePicker() {
@@ -120,6 +123,51 @@ class Dates {
         return await this.commands.isWebElementEnabled(this.shareFeedbackBttn)
     }
 
-    
+    async scrollToShareYourFeedback() {
+        await this.commands.scrollElementIntoView(this.shareFeedbackBttn)
+    }
+
+    async selectDestinationWithSubtext(valueToSelect) {
+        await this.commands.autoSugSelectorWithSubtext(this.distinationsSubtextLoc, valueToSelect)
+        
+    }
+
+    async selectFiveStarRating(selectThis) {
+        await this.commands.selectFromMultipleElements(this.starRatingLoc, selectThis)
+    }
+
+    async scrollToStarRating() {
+        await this.commands.scrollElementIntoView(this.starRatingLoc)
+    }
+
+    async selectFromSortBy(selectThis) {
+        await this.commands.selectFromDropdown(this.sortByMenuLoc, selectThis)
+    }
+
+    async allStarRatingsElmements() {
+        return await this.commands.findWebElements(this.fiveStarRatingLoc)
+    }
+
+   
+    async areAllElmentsInArrayEqualThisValue(allElements, userInput){
+        for(let i = 0; i < allElements.length; i++) {
+            const element = await allElements[i].getText()
+            if(element.substring(0, 1).localeCompare(userInput) !== 0) {
+                return false
+            }
+        }
+        return true;
+    }
+
+    async allPriceElements() {
+        return await this.commands.findWebElements(this.hotelPriceLoc)
+    }
+
+    async ifPriceElmInIncreasingOrder(arrayOfElements) {
+        return await this.commands.allElementsInArrayInIncreasigOrder(arrayOfElements)
+    }
+
+
+   
 }
 module.exports = Dates

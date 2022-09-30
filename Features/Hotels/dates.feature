@@ -30,3 +30,15 @@ Feature: Destination dates verification on hotels website
         And I click Search button
         Then I verify Tell us how we can improve our site is displayed
         And I verify button Share feedback is displayed and enabled
+
+    @sprint2 @sorting @TC-23
+    Scenario: Verify filter-by and sort-by functionality works as expected
+        Given I am on hotels landing page
+        When I search Manhattan New York and select
+        And I select Jan 10, 2023 as Check-in
+        And I select Jan 23, 2023 as Check-out
+        And I click on “search” button
+        And I click on 5★ from star-rating filter
+        And I select “Price” from sort-by dropdown
+        Then I verify all hotels in search results are 5★-rated as selected in above step
+        And I verify all hotels are listed in increasing order by price

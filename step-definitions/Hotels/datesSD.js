@@ -106,6 +106,44 @@ When(/^I verify button Share feedback is displayed and enabled$/, async function
     expect(shareBttnEnabl,'Share feedback is NOT').to.be.true
 })
 
+When(/^I search (.+) and select$/, async function(valueToSelect) {
+    await dPage.clickInDestField()
+    await browser.pause(1000)
+    await dPage.typeInDestField(valueToSelect)
+    await browser.pause(1000)
+    await dPage.selectDestinationWithSubtext(valueToSelect)
+})
+
+When(/^I click on “search” button$/, async function() {
+    await dPage.clickSearcBttn()
+    await browser.pause(1000)
+})
+
+When(/^I click on (.+) from star-rating filter$/, async function(selectThis) {
+    await dPage.scrollToStarRating()
+    await dPage.selectFiveStarRating(selectThis)
+    await browser.pause(1000)
+})
+
+When(/^I select “(.+)” from sort-by dropdown$/, async function(selectThis) {
+    await dPage.selectFromSortBy(selectThis)
+    await browser.pause(3000) 
+})
+
+Then(/^I verify all hotels in search results are (.+)★-rated as selected in above step$/, async function(userInput) {
+    await dPage.scrollToShareYourFeedback()
+    await browser.pause(1000)
+    const allStarElemnts = await dPage.allStarRatingsElmements()
+    expect(await dPage.areAllElmentsInArrayEqualThisValue(allStarElemnts, userInput), 'All hotels search results are NOT 5-star rated').to.be.true
+    await browser.pause(1000)
+})
+
+When(/^I verify all hotels are listed in increasing order by price$/, async function() {
+    const allPriceElements = await dPage.allPriceElements()
+    expect(await dPage.ifPriceElmInIncreasingOrder(allPriceElements)).to.be.true
+    await browser.pause(1000)
+})
+
 
 
     

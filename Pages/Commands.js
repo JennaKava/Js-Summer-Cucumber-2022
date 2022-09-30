@@ -30,6 +30,18 @@ class Commands {
         const dropdownElement = await this.findWebElement(locator)
         await dropdownElement.selectByVisibleText(selectThis)
     }
+
+    async selectFromMultipleElements(locator, selectThis) {
+        const webElements = await this.findWebElements(locator)
+        for(const webElement of webElements){
+            const element = await webElement.getText()
+            if(element.localeCompare(selectThis) === 0) {
+                await webElement.click()
+                break;
+            }
+        }
+    }
+
     async mouseOver(locator) {
         const element = await this.findWebElement(locator)
         await element.moveTo()
@@ -164,6 +176,20 @@ class Commands {
         }
     }
 
+    async autoSugSelectorWithSubtext(autoSuggestionLoc, valueToSelect) {
+        const autoSuggestionElements = await this.findWebElements(autoSuggestionLoc);
+        for (const autoSuggestionElement of autoSuggestionElements) {
+            const suggestionText = await autoSuggestionElement.getText();
+            const suggestionsTextArray = suggestionText.split("\n")
+            const suggestionsTextLine = suggestionsTextArray.join(" ")
+            console.log(`\n\nHello ->${suggestionsTextLine}\n\n`);
+            if (suggestionsTextLine.toLowerCase().startsWith(valueToSelect.toLowerCase()) === true) {
+                await autoSuggestionElement.click();
+                break;
+            }
+        }
+    }
+    // takes in dates in format Oct 3, 2022 hotels.com website
     async selectDateFromCalendar(monthLocator, goToNextMonthLocator, allDatesLocator, dateToSelect) {
         for (let i=1 ; i <= 12 ; i++) {
             const monthSeen = await this.getTextFromWebElement(monthLocator)
@@ -254,6 +280,23 @@ class Commands {
     async getNextSiblingElemInDOM(locator) {
         const element = await this.findWebElement(locator)
         return await element.nextElement()
+    }
+
+    async allElementsInArrayInIncreasigOrder(arrayOfElements) {
+        let lastElement = 0
+        for (let i = 0; i < arrayOfElements.length; i++) {
+            const elementString = await arrayOfElements[i].getText()
+            const element = elementString.split('$')
+            const elementInt = parseFloat(element[1].replace(",", ""))
+            if (i === 0) {
+                lastElement = elementInt
+            } else if(lastElement <= elementInt) {
+                lastElement = elementInt
+            } else {
+                return false
+            }
+        }
+        return true
     }
 
 
