@@ -30,6 +30,18 @@ class Commands {
         const dropdownElement = await this.findWebElement(locator)
         await dropdownElement.selectByVisibleText(selectThis)
     }
+
+    async selectFromMultipleElements(locator, selectThis) {
+        const webElements = await this.findWebElements(locator)
+        for(const webElement of webElements){
+            const element = await webElement.getText()
+            if(element.localeCompare(selectThis) === 0) {
+                await webElement.click()
+                break;
+            }
+        }
+    }
+
     async mouseOver(locator) {
         const element = await this.findWebElement(locator)
         await element.moveTo()
@@ -55,7 +67,7 @@ class Commands {
         return parseFloat(await element.getText())
     }
 
-    async getAutoSugText(locator, userInput) {
+    async chooseFromAutoSuggestion(locator, userInput) {
         const autoSuggestions = await $$(locator)
         for(const selectedText of autoSuggestions) {
             const autoSuggestText = await selectedText.getText()
@@ -138,10 +150,10 @@ class Commands {
     //  * Generic function to select value form Dropdown (with select-tag)
     //  * Input: locator, selectThis
     //  */
-    // async selectFromDropdown(locator, selectThis) {
-    //     const dropdownElement = await this.findWebElement(locator);
-    //     await dropdownElement.selectByVisibleText(selectThis);
-    // }
+    async selectFromDropdown(locator, selectThis) {
+        const dropdownElement = await this.findWebElement(locator);
+        await dropdownElement.selectByVisibleText(selectThis);
+    }
 
     // async getTextFromWebElement(locator) {
     //     const element = this.findWebElement(locator);
@@ -164,17 +176,31 @@ class Commands {
         }
     }
 
-    async selectDateFromCalendar(monthHeadingLocator, goToNextMonthLocator, allDatesLocator, dateToSelect) {
+    async autoSugSelectorWithSubtext(autoSuggestionLoc, valueToSelect) {
+        const autoSuggestionElements = await this.findWebElements(autoSuggestionLoc);
+        for (const autoSuggestionElement of autoSuggestionElements) {
+            const suggestionText = await autoSuggestionElement.getText();
+            const suggestionsTextArray = suggestionText.split("\n")
+            const suggestionsTextLine = suggestionsTextArray.join(" ")
+            console.log(`\n\nHello ->${suggestionsTextLine}\n\n`);
+            if (suggestionsTextLine.toLowerCase().startsWith(valueToSelect.toLowerCase()) === true) {
+                await autoSuggestionElement.click();
+                break;
+            }
+        }
+    }
+    // takes in dates in format Oct 3, 2022 hotels.com website
+    async selectDateFromCalendar(monthLocator, goToNextMonthLocator, allDatesLocator, dateToSelect) {
         for (let i=1 ; i <= 12 ; i++) {
-            const monthSeen = await this.isWebElementDisplayed(monthHeadingLocator);
-            if (monthSeen) {
+            const monthSeen = await this.getTextFromWebElement(monthLocator)
+            if (await monthSeen.includes(dateToSelect.substring(0, 2)) === true){
                 break;
             }
             await this.clickWebElement(goToNextMonthLocator);
         }
         const allDateElements = await this.findWebElements(allDatesLocator);
         for (const dateElement of allDateElements) {
-            const date = await dateElement.getAttribute('data-day');
+            const date = await dateElement.getAttribute('aria-label');
             if (date.localeCompare(dateToSelect) === 0) {
                 await dateElement.click();
                 break;
@@ -227,9 +253,53 @@ class Commands {
     async multiClickWebEl(locator, numberOfClicks) {
         const element = await this.findWebElement(locator)
         for (let counter = 1; counter <= numberOfClicks; counter++) {
-            await element.click()  
-            console.log(`\n\nEK->${counter} numberOfClicks: ${numberOfClicks}\n\n`);
+            await element.click();
         }
     }
+
+    async selectPreviousMonthFromCalander(monthLocator, goToPreviousMonthLocator, monthName) {
+        const monthSeen = await this.getTextFromWebElement(monthLocator)
+        if (await monthSeen.includes(monthName) === false) {
+            await this.clickWebElement(goToPreviousMonthLocator);
+        }
+    }
+    
+    async isAnyElemInArrayEnabled(allDates){
+        if(allDates.length === 0) {
+            return false
+        }
+
+        for(let i=0; i === allDates.length; i++){
+            if(await allDates[i].isEnabled() !== false) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    async getNextSiblingElemInDOM(locator) {
+        const element = await this.findWebElement(locator)
+        return await element.nextElement()
+    }
+
+    async allElementsInArrayInIncreasigOrder(arrayOfElements) {
+        let lastElement = 0
+        for (let i = 0; i < arrayOfElements.length; i++) {
+            const elementString = await arrayOfElements[i].getText()
+            const element = elementString.split('$')
+            const elementInt = parseFloat(element[1].replace(",", ""))
+            if (i === 0) {
+                lastElement = elementInt
+            } else if(lastElement <= elementInt) {
+                lastElement = elementInt
+            } else {
+                return false
+            }
+        }
+        return true
+    }
+
+
+
 }
 module.exports = Commands;
